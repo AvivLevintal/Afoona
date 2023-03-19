@@ -1,0 +1,11 @@
+.env
+.env.test
+node_modules/
+backend/imgs
+backend/imgs2
+node_modules/
+frontend/ssl-bundle.crt
+frontend/afoona.com_key.key
+frontend/public/imgs2
+DB/data/
+frontend/build/

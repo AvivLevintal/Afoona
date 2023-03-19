@@ -1,0 +1,1 @@
+0 0 * * * curl --location --request PUT 'https://afoona.com:5000/api/recipes/clicks/reset'  --header 'recipe_id: 55' >/dev/null 2>&1

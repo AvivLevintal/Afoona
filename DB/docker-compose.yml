@@ -1,0 +1,36 @@
+version: '3'
+services:
+  mongo:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=0Kpjska5fb51!
+      - MONGO_INITDB_DATABASE=afoona-local
+    command: mongod --auth
+
+  mongo_seed:
+    image: mongo:latest
+    links:
+      - mongo
+    volumes:
+      - ./:/mongo-seed
+    command:
+      /mongo-seed/import.sh
+
+  
+  react-app:
+    build: ../frontend
+    stdin_open: true
+    ports:
+      - "443:443"
+      - "80:80"
+
+  express-app:
+    build: ../
+    ports:
+      - "5000:5000"
+    depends_on:
+      - "mongo"
+      - "mongo_seed"
